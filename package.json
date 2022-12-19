@@ -7,6 +7,11 @@
     "type": "git",
     "url": "https://github.com/ChingHong19980819/Electron-Testing.git"
   },
+  "build": {
+    "win": {
+      "icon": "build/icon.png"
+    }
+  },
   "publish": {
     "provider": "github",
     "releaseType": "release"
