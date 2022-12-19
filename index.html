@@ -56,14 +56,14 @@
       version.innerText = 'Version ' + arg.version;
     });
 
-    ipcRenderer.on('update-available', () => {
+    ipcRenderer.on('update_available', () => {
       console.log(123412)
       ipcRenderer.removeAllListeners('update_available');
       message.innerText = 'A new update is available. Downloading now...';
       notification.classList.remove('hidden');
     });
 
-    ipcRenderer.on('update-downloaded', () => {
+    ipcRenderer.on('update_downloaded', () => {
       console.log(14322)
       ipcRenderer.removeAllListeners('update_downloaded');
       message.innerText = 'Update Downloaded. It will be installed on restart. Restart now?';
