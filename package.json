@@ -1,0 +1,46 @@
+{
+  "name": "electron-auto-update-example",
+  "version": "1.0.7",
+  "description": "",
+  "main": "main.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ChingHong19980819/Electron-Testing.git"
+  },
+  "publish": {
+    "provider": "github",
+    "releaseType": "release"
+  },
+  "build": {
+    "appId": "yourAppId",
+    "dmg": {
+      "sign": false
+    },
+    "linux": {
+      "category": "TODO: fill here the category of your app",
+      "icon": "build/icon.png",
+      "target": [
+        "AppImage",
+        "deb"
+      ]
+    },
+    "win": {
+      "icon": "build/icon.png"
+    }
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron .",
+    "build": "electron-builder build --win --publish never",
+    "deploy": "electron-builder build --win --publish always"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^5.0.1",
+    "electron-builder": "^20.40.2"
+  },
+  "dependencies": {
+    "electron-updater": "^4.0.6"
+  }
+}
