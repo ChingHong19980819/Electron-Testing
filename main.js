@@ -1,6 +1,9 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
+const path = require('path')
 const { autoUpdater } = require('electron-updater');
-
+const log = require('electron-log')
+log.transports.file.resolvePath = () => path.join('D:/Projects/electron-auto-update-example', '/logs/main.log')
+log.info('Application Version - ' + app.getVersion())
 let mainWindow;
 
 function createWindow() {
@@ -15,13 +18,14 @@ function createWindow() {
   mainWindow.on('closed', function () {
     mainWindow = null;
   });
-  mainWindow.once('ready-to-show', () => {
-    autoUpdater.checkForUpdatesAndNotify();
-  });
+
 }
 
 app.on('ready', () => {
   createWindow();
+
+  autoUpdater.checkForUpdatesAndNotify();
+
 });
 
 app.on('window-all-closed', function () {
@@ -42,16 +46,24 @@ ipcMain.on('app_version', (event) => {
 });
 
 autoUpdater.on('update-available', () => {
-  console.log(131)
+  log.info('update-available')
   mainWindow.webContents.send('update_available');
 });
 
 autoUpdater.on('update-downloaded', () => {
-  console.log(0123)
+  log.info('update-downloaded')
+
+  mainWindow.webContents.send('update_downloaded');
+});
+
+autoUpdater.on('download-progress', (progress) => {
+  log.info('download-progress' + progress)
 
   mainWindow.webContents.send('update_downloaded');
 });
 
 ipcMain.on('restart_app', () => {
+  log.info('restart_app')
+
   autoUpdater.quitAndInstall();
 });

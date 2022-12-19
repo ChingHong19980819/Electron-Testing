@@ -1,6 +1,6 @@
 {
   "name": "electron-auto-update-example",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "",
   "main": "main.js",
   "repository": {
@@ -8,13 +8,13 @@
     "url": "https://github.com/ChingHong19980819/Electron-Testing.git"
   },
   "build": {
-    "win": {
-      "icon": "build/icon.png"
-    }
-  },
-  "publish": {
-    "provider": "github",
-    "releaseType": "release"
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "ChingHong19980819",
+        "repo": "Electron-Testing"
+      }
+    ]
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -29,6 +29,7 @@
     "electron-builder": "^20.40.2"
   },
   "dependencies": {
+    "electron-log": "^4.4.8",
     "electron-updater": "^4.0.6"
   }
 }
